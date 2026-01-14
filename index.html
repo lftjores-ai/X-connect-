@@ -1,0 +1,56 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bienvenue sur X-Connect 🔞</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #1e1e1e, #3a3a3a);
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    input {
+      width: 80%;
+[13/01 à 01:44] ChatGPT: }
+    button {
+      background-color: #e91e63;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #c2185b;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bienvenue sur X-Connect 🔥</h1>
+  <p>Commence par t’inscrire avec ton numéro ou ton email pour accéder au jeu !</p> 
+
+  <form id="registerForm">
+    <input type="text" id="userInfo" placeholder="Ton numéro ou ton email" required /><br>
+    <button type="submit">S’inscrire</button>
+  </form> 
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const info = document.getElementById("userInfo").value;
+      localStorage.setItem("user_info", info);
+      // Rediriger vers la page des tarifs
+      window.location.href = "tarifs.html";
+    });
+  </script>
+</body>
+</html>
+```

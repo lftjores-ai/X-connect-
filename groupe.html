@@ -1,0 +1,58 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Créer un groupe - X-Connect</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #121212; color: #eee; padding: 20px; }
+  input, button, textarea { display: block; width: 100%; margin: 10px 0; padding: 10px; font-size: 1em; }
+  button { background-color: #e91e63; color: white; border: none; cursor: pointer; }
+  button:disabled { background-color: #999; cursor: not-allowed; }
+  label { font-weight: bold; margin-top: 20px; display: block; }
+</style>
+</head>
+<body>
+<h1>Créer un Groupe</h1>
+<p>Entrez le nom du groupe et les numéros des membres (séparés par des virgules)</p>
+
+<label for="groupName">Nom du groupe</label>
+<input type="text" id="groupName" placeholder="Nom du groupe" />
+
+<label for="members">Numéros des membres</label>
+<textarea id="members" placeholder="Ex: +33612345678, +33698765432, +33611223344" rows="4"></textarea>
+
+<button id="startBtn">Commencer la discussion</button>
+
+<script>
+[14/01 à 14:28] ChatGPT: const backendUrl = 'https://x-connect-message--lftjores.replit.app'; // URL backend Replit
+
+  const groupNameInput = document.getElementById('groupName');
+  const membersInput = document.getElementById('members');
+  const startBtn = document.getElementById('startBtn');
+
+  startBtn.addEventListener('click', () => {
+    const groupName = groupNameInput.value.trim();
+    const members = membersInput.value.trim();
+
+    if(!groupName) {
+      alert('Veuillez entrer un nom de groupe.');
+      return;
+    }
+    if(!members) {
+      alert('Veuillez entrer au moins un numéro de membre.');
+      return;
+    }
+
+    // Sauvegarde dans localStorage pour récupération côté chat
+    localStorage.setItem('groupName', groupName);
+    localStorage.setItem('groupMembers', members);
+
+    // Rediriger vers la page de chat de groupe
+    window.location.href = 'chatgroupe.html';
+  });
+</script>
+</body>
+</html>
+```

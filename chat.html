@@ -1,0 +1,95 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Messagerie Anonyme - X-Connect</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #121212; color: #eee; padding: 20px; }
+  #chatBox { border: 1px solid #444; padding: 10px; height: 300px; overflow-y: auto; background: #222; }
+  #messageInput { width: calc(100% - 90px); padding: 10px; }
+  #sendBtn { width: 70px; padding: 10px; background-color: #e91e63; color: white; border: none; cursor: pointer; }
+  #sendBtn:disabled { background-color: #999; cursor: not-allowed; }
+  p { margin: 5px 0; }
+  .me { color: #ff4081; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>Messagerie Anonyme</h1>
+
+<input type="text" id="recipientNumber" placeholder="Numéro WhatsApp du destinataire (ex: +33612345678)" />
+<div id="chatBox"></div>
+
+<input type="text" id="messageInput" placeholder="Tapez votre message..." autocomplete="off" />
+<button id="sendBtn" disabled>Envoyer</button>
+
+<script>
+  const backendUrl = 'https://x-connect-message--lftjores.replit.app'; // backend Replit
+
+  const chatBox = document.getElementById('chatBox');
+[14/01 à 14:36] ChatGPT: const messageInput = document.getElementById('messageInput');
+  const sendBtn = document.getElementById('sendBtn');
+  const recipientInput = document.getElementById('recipientNumber');
+
+  // Activer bouton envoyer si message non vide et numéro valide
+  function validateInput() {
+    const msg = messageInput.value.trim();
+    const recipient = recipientInput.value.trim();
+    const validNumber = /^\+8̣,̣1̣5̣/.test(recipient);
+    sendBtn.disabled = !(msg        validNumber);
+  
+
+  messageInput.addEventListener('input', validateInput);
+  recipientInput.addEventListener('input', validateInput);
+
+  // Envoyer message au backend
+  async function sendMessage() 
+    const text = messageInput.value.trim();
+    const recipient = recipientInput.value.trim();
+
+    if (!text || !recipient) return;
+
+    const messageData = 
+      recipient: recipient,
+      text: text,
+      user: 'Anonyme'
+    ;
+
+    try 
+      const res = await fetch(`{backendUrl}/anonymous`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(messageData)
+      });
+      if (!res.ok) throw new Error('Erreur lors de l\'envoi du message');
+      messageInput.value = '';
+      sendBtn.disabled = true;
+      addMessageToChatBox('Vous (anonyme)', text);
+[14/01 à 14:36] ChatGPT: } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+
+  messageInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !sendBtn.disabled) {
+      sendMessage();
+    }
+  });
+
+  // Ajouter message dans la zone de chat
+  function addMessageToChatBox(user, text) {
+    const p = document.createElement('p');
+    p.textContent = `user:{text}`;
+    if (user === 'Vous (anonyme)') p.classList.add('me');
+    chatBox.appendChild(p);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+</script>
+
+</body>
+</html>
+```

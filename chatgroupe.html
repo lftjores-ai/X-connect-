@@ -1,0 +1,104 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Discussion de Groupe - X-Connect</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #121212; color: #eee; padding: 20px; }
+  #chatBox { border: 1px solid #444; padding: 10px; height: 300px; overflow-y: auto; background: #222; }
+  #messageInput { width: calc(100% - 90px); padding: 10px; }
+  #sendBtn { width: 70px; padding: 10px; background-color: #e91e63; color: white; border: none; cursor: pointer; }
+  #sendBtn:disabled { background-color: #999; cursor: not-allowed; }
+  p { margin: 5px 0; }
+  .me { color: #ff4081; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>Discussion de Groupe :</h1>
+
+<div id="chatBox"></div>
+
+<input type="text" id="messageInput" placeholder="Tapez votre message..." autocomplete="off" />
+<button id="sendBtn" disabled>Envoyer</button>
+
+<script>
+  const backendUrl = 'https://x-connect-message--lftjores.replit.app'; // backend Replit
+
+  const chatBox = document.getElementById('chatBox');
+  const messageInput = document.getElementById('messageInput');
+[14/01 à 14:31] ChatGPT: const sendBtn = document.getElementById('sendBtn');
+
+  // Récupérer le nom du groupe depuis localStorage
+  const groupName = localStorage.getItem('groupName');
+  if (!groupName) {
+    alert("Nom du groupe introuvable. Retour à la page création de groupe.");
+    window.location.href = "groupe.html";
+  }
+
+  // Enable send button uniquement si message non vide
+  messageInput.addEventListener('input', () => {
+    sendBtn.disabled = messageInput.value.trim() === '';
+  });
+
+  // Envoyer message au backend
+  async function sendMessage() {
+    const text = messageInput.value.trim();
+    if (!text) return;
+
+    const messageData = {
+      group: groupName,
+      text: text,
+      user: 'Vous' // peut être modifié pour user réel
+    };
+
+    try {
+      const res = await fetch(`${backendUrl}/messages`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(messageData)
+      });
+      if (!res.ok) throw new Error('Erreur lors de l\'envoi du message');
+      messageInput.value = '';
+      sendBtn.disabled = true;
+      fetchMessages();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+
+  messageInput.addEventListener('keydown', (e) => {
+[14/01 à 14:31] ChatGPT: sendMessage();
+    );
+
+  // Récupérer et afficher les messages
+  async function fetchMessages() 
+    try 
+      const res = await fetch(`{backendUrl}/messages?group=encodeURIComponent(groupName)`);
+      if (!res.ok) throw new Error('Erreur récupération messages');
+      const messages = await res.json();
+      chatBox.innerHTML = ”;
+      messages.forEach(msg => 
+        const p = document.createElement('p');
+        p.textContent = `{msg.user === 'Vous' ? 'Vous' : msg.user}: ${msg.text}`;
+        if (msg.user === 'Vous') p.classList.add('me');
+        chatBox.appendChild(p);
+      });
+      chatBox.scrollTop = chatBox.scrollHeight;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  // Rafraîchir messages toutes les 2 secondes
+  setInterval(fetchMessages, 2000);
+
+  fetchMessages();
+</script>
+
+</body>
+</html>
+```

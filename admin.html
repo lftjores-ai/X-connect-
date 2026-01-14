@@ -1,0 +1,113 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Espace Admin - X-Connect</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #1a1a1a, #333);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff4081;
+    }
+
+    input, textarea {
+      padding: 10px;
+      margin: 10px auto;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      width: 90%;
+      max-width: 400px;
+      display: block;
+    }
+
+    button {
+      background-color: #ff4081;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e03570;
+    }
+
+    .code-list {
+      margin-top: 20px;
+      text-align: left;
+[13/01 à 02:44] ChatGPT: max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .code-item {
+      background: #444;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔐 Panneau Administrateur</h1>
+
+  <p>Ajoute un nouveau code d’accès :</p>
+  <input type="text" id="newCode" placeholder="Ex : jour2024 / mois2024 / semaine2024" />
+  <button onclick="addCode()">Ajouter le code</button>
+
+  <p>Liste des codes enregistrés :</p>
+  <div id="codeList" class="code-list"></div>
+
+  <button onclick="localStorage.clear(); location.reload();">🗑️ Réinitialiser les codes</button>
+  <button onclick="window.location.href='index.html'">🏠 Accueil</button>
+
+  <script>
+    const storageKey = "accessCodes";
+
+    // Charger les codes existants
+    const loadCodes = () => {
+      const codes = JSON.parse(localStorage.getItem(storageKey)) || [];
+      const list = document.getElementById("codeList");
+      list.innerHTML = "";
+
+      codes.forEach((code, index) => {
+        const div = document.createElement("div");
+        div.className = "code-item";
+        div.textContent = `index + 1.{code}`;
+        list.appendChild(div);
+      });
+    };
+
+    // Ajouter un nouveau code
+    const addCode = () => {
+[13/01 à 02:44] ChatGPT: const input = document.getElementById("newCode");
+      const newCode = input.value.trim();
+      if (newCode === "") return;
+
+      const codes = JSON.parse(localStorage.getItem(storageKey)) || [];
+      codes.push(newCode);
+      localStorage.setItem(storageKey, JSON.stringify(codes));
+      input.value = "";
+      loadCodes();
+    };
+
+    loadCodes();
+  </script>
+
+</body>
+</html>
+```
+
+---

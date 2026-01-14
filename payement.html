@@ -1,0 +1,75 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paiement - X-Connect 🔞</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #121212, #2c2c2c);
+      color: #fff;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    h1 {
+      color: #e91e63;
+      margin-bottom: 25px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: block;
+      width: 250px;
+      margin: 15px auto;
+      padding: 15px 20px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #c2185b;
+    }
+    #infoTarif {
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ff79a6;
+    }
+  </style>
+</head>
+<body>
+[13/01 à 01:52] ChatGPT: <h1>Effectue ton paiement</h1>
+  <p>Tu as choisi l’abonnement : <span id="infoTarif"></span></p>
+  <p>Contacte-nous via WhatsApp pour finaliser ton paiement :</p>
+
+  <a class="btn" href="https://wa.me/241065811471" target="_blank">Payer via Moov 📱</a>
+  <a class="btn" href="https://wa.me/24176345569" target="_blank">Payer via Airtel 📲</a>
+
+  <br>
+  <a class="btn" href="code.html">J’ai déjà un code d’accès</a>
+
+  <script>
+    // Récupérer le tarif choisi depuis le localStorage
+    const tarif = localStorage.getItem("tarifChoisi") || "non défini";
+    const tarifsTexte = {
+      "journalier": "Journalier - 500 FCFA",
+      "hebdomadaire": "Hebdomadaire - 2000 FCFA",
+      "mensuel": "Mensuel - 6000 FCFA"
+    };
+    document.getElementById("infoTarif").textContent = tarifsTexte[tarif] || "Aucun tarif sélectionné";
+  </script>
+
+</body>
+</html>
+```
+
+---

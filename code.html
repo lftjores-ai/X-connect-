@@ -1,0 +1,84 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrer le Code d’Accès</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #1a1a1a, #333);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      background: #2c2c2c;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #e91e63;
+      text-align: center;
+      width: 90%;
+      max-width: 350px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #e91e63;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+[13/01 à 01:54] ChatGPT: }
+    button:hover {
+      background-color: #c2185b;
+    }
+    .error {
+      color: #ff5252;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Code d’accès</h2>
+    <p>Entre le code que tu as reçu après paiement :</p>
+    <input type="password" id="accessCode" placeholder="Ton code ici">
+    <button onclick="checkCode()">Valider</button>
+    <p id="errorMsg" class="error"></p>
+  </div>
+
+  <script>
+    const adminCode = "admi.2"; // Code pour toi (admin)
+    const validUserCodes = ["lft241@51", "xyz123", "abc456"]; // Exemples de codes valides
+
+    function checkCode() {
+      const inputCode = document.getElementById("accessCode").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (inputCode === adminCode) {
+        window.location.href = "admin.html";
+      } else if (validUserCodes.includes(inputCode)) {
+        window.location.href = "jeux.html";
+      } else {
+        errorMsg.textContent = "Code invalide. Réessaie ou contacte l’admin.";
+      }
+    }
+  </script>
+</body>
+</html>
+```

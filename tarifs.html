@@ -1,0 +1,102 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tarifs - X-Connect 🔞</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #121212, #2c2c2c);
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    h1 {
+      margin-bottom: 30px;
+      color: #e91e63;
+    }
+    .tarif-box {
+      background: #1f1f1f;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px auto;
+      width: 300px;
+      box-shadow: 0 0 10px #e91e63aa;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tarif-box:hover {
+      background: #e91e6390;
+    }
+    .tarif-box h2 {
+      margin: 0 0 10px;
+    }
+    .tarif-box p {
+      margin: 5px 0;
+      font-size: 18px;
+    }
+    button {
+      margin-top: 25px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      padding: 14px 40px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+[13/01 à 01:48] ChatGPT: transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #c2185b;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Choisis ton abonnement</h1>
+
+  <form id="tarifForm">
+    <div class="tarif-box">
+      <label>
+        <input type="radio" name="tarif" value="journalier" required />
+        <h2>Abonnement Journalier</h2>
+        <p>Prix : 500 FCFA</p>
+      </label>
+    </div>
+
+    <div class="tarif-box">
+      <label>
+        <input type="radio" name="tarif" value="hebdomadaire" />
+        <h2>Abonnement Hebdomadaire</h2>
+        <p>Prix : 2 000 FCFA</p>
+      </label>
+    </div>
+
+    <div class="tarif-box">
+      <label>
+        <input type="radio" name="tarif" value="mensuel" />
+        <h2>Abonnement Mensuel</h2>
+        <p>Prix : 6 000 FCFA</p>
+      </label>
+    </div>
+
+    <button type="submit">Continuer vers le paiement</button>
+  </form>
+
+  <script>
+    document.getElementById("tarifForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const tarifChoisi = document.querySelector('input[name="tarif"]:checked').value;
+      localStorage.setItem("tarifChoisi", tarifChoisi);
+      // Redirection vers la page de paiement
+      window.location.href = "payment.html";
+    });
+  </script>
+
+</body>
+</html>
+```
+
+---
